@@ -1,0 +1,31 @@
+#include <iostream>
+
+using namespace std;
+
+int main()
+{
+    int n, k, ct=0, nr=0, i, a[12], ct2=-1;
+    cin>>n>>k;
+    int nn=n;
+    while(nn)//numararea cifrelor numerului
+    {
+        ct++;
+        nn/=10;
+    }
+    for(i=ct;i>=1;i--)
+ {       a[i]=n%10;//punerea in vector, in ordine, a cifrelor numarului n
+        n/=10;
+        if(a[i]==k)
+        a[i]=-1;
+        if(a[i]!=-1 && a[i]!=0)//memorarea primei valori diferita de 0 si de k
+        ct2=i;
+}
+for(i=ct2;i<=ct;i++)//crearea numarului format din 'taierea' cifrelor egale cu k, incepand cu primul numar !=0 si 1=k
+    if(a[i]!=-1)
+    nr=nr*10+a[i];
+    
+    if(ct2==-1)cout<<-1;//afisarea numarului in cazul in care nu s-au eliminat toate cifrele
+else
+cout<<nr;//afisarea
+    return 0;
+}
